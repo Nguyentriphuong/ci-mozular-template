@@ -49,8 +49,12 @@ export class MenuBarComponent implements OnInit {
     this.subscription = this.sendDataService.currentMessage.subscribe(data => {
       if (data && data !== 'default message') {
         console.log(data);
-
-        this.companyDetal = JSON.parse(data);
+        const dataConvert = JSON.parse(data);
+        if (dataConvert && dataConvert.type && dataConvert.type === 'nar') {
+          this.listNav = dataConvert.ListNav;
+        } else {
+          this.companyDetal = JSON.parse(data);
+        }
         // this.getCompany();
       }
     });

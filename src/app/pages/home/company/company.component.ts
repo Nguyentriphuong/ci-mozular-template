@@ -12,7 +12,10 @@ import { SwalService } from 'src/app/services/swal.service';
 })
 export class CompanyComponent implements OnInit {
 
-  model: any = {};
+  model: any = {
+    Color: '#9fb9c8',
+    Nav: 1
+  };
   config = new CompanyModel();
   option = {
     avatar: true,
@@ -42,8 +45,14 @@ export class CompanyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // document.documentElement.style.setProperty(`--ci-color-ecko-blue`, '#2C2EB8');
+    // console.log(123);
+    // setTimeout(() => {
+    //   document.documentElement.style.setProperty(`--ci-color-ecko-blue`, '#F13F5D');
+
+    // }, 5000);
     this.listCreate = this.config.create;
-    this.getCompany(false);
+    //this.getCompany(false);
   }
   getCompany(check): void {
     this.service.detail().subscribe(res => {
@@ -57,14 +66,72 @@ export class CompanyComponent implements OnInit {
   handleCallback = (value) => {
     if (value.type === 'save') {
       console.log(value);
-      this.service.update(value.data.CompanyId, value.data).subscribe(res => {
-        // this.swal.success('Update success');
-        this.btnConfig.isEventUpdate = false;
-        this.getCompany(true);
-      });
-    } else if (value.type === 'edit') {
-      this.btnConfig.isEventUpdate = true;
+      let listNav = [
+        {
+          icon: 'assets/svg/Company.svg',
+          name: 'Company',
+          router: '/company'
+        },
+        {
+          icon: 'assets/svg/Subcription.svg',
+          name: 'Subscription',
+          router: '/subscription'
+        },
+        {
+          icon: 'assets/svg/Employee.svg',
+          name: 'Employee',
+          router: '/employee'
+        },
+        {
+          icon: 'assets/svg/Lists.svg',
+          name: 'Lists',
+          router: '/management'
+        },
+        {
+          icon: 'assets/svg/report.svg',
+          name: 'Report',
+          router: '/report'
+        }
+      ];
+      if (value.data.Nav === 2) {
+        listNav = [
+          {
+            icon: 'assets/svg/Company.svg',
+            name: 'Company',
+            router: '/company'
+          },
+          {
+            icon: 'assets/svg/Employee.svg',
+            name: 'Employee',
+            router: '/employee'
+          },
+          {
+            icon: 'assets/svg/Lists.svg',
+            name: 'Lists',
+            router: '/management'
+          },
+          {
+            icon: 'assets/svg/Subcription.svg',
+            name: 'Subscription',
+            router: '/subscription'
+          }
+        ];
+        const data =  {
+          type: 'nar',
+          ListNav: listNav
+        };
+        console.log(JSON.stringify(listNav));
+        this.sendDataService.changeData(JSON.stringify(data));
+      }
+      document.documentElement.style.setProperty(`--ci-color-ecko-blue`, value.data.Color);
+      // this.service.update(value.data.CompanyId, value.data).subscribe(res => {
+      //   // this.swal.success('Update success');
+      //   this.btnConfig.isEventUpdate = false;
+      //   this.getCompany(true);
+      // });
     }
+    this.btnConfig.isEventUpdate = false;
+
   }
 
 }

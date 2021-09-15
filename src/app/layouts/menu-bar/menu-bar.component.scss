@@ -1,3 +1,4 @@
+@import "../../../themes/variables.scss";
 .menu-bar {
     height: 100vh;
     top: 0;
@@ -9,7 +10,7 @@
     }
     .menu-bar-content {
         width: 117px;
-        background-color: #9FB9C8;
+        background-color: var(--ci-color-ecko-blue);
         height: 100%;
         display: flex;
         justify-content: center;

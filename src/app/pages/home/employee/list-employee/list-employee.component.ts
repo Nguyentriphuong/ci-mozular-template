@@ -7,110 +7,110 @@ import { MenuHeaderModule } from 'src/app/layouts/menu-header/menu-header.compon
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
-    selector: 'app-list-employee',
-    templateUrl: './list-employee.component.html',
-    styleUrls: ['./list-employee.component.scss']
+  selector: 'app-list-employee',
+  templateUrl: './list-employee.component.html',
+  styleUrls: ['./list-employee.component.scss']
 })
 export class ListEmployeeComponent implements OnInit {
-    isShowActive = false;
-    option = {
-        avatar: true,
-        title: 'List of Employees',
-        search: true
+  isShowActive = false;
+  option = {
+    avatar: true,
+    title: 'List of Employees',
+    search: true
+  }
+
+  configData = [
+    {
+      condition: 'MediaURL',
+      type: 'link',
+      cssClass: 'MediaURL'
+    },
+
+    {
+      condition: 'FullName',
+      type: 'text',
+      cssClass: 'text-bold'
+    },
+    {
+      condition: 'ProviderCode',
+      type: 'text',
+      cssClass: 'text-bold'
+    },
+    {
+      condition: 'PositionName',
+      type: 'text',
+      cssClass: 'text-regular'
     }
+  ]
+  listEmployeeActive: any = [];
+  listEmployeeResigned: any = [];
+  dataActive: any = [];
+  dataResigned: any = [];
+  constructor(
+    private service: EmployeeService,
+    private router: Router
+  ) { }
 
-    configData = [
-        {
-            condition: 'MediaURL',
-            type: 'link',
-            cssClass: 'MediaURL'
-        },
+  ngOnInit(): void {
+    this.service.listEmployee(1).subscribe(res => {
+      console.log(res, 123);
 
-        {
-            condition: 'FullName',
-            type: 'text',
-            cssClass: 'text-bold'
-        },
-        {
-            condition: 'ProviderCode',
-            type: 'text',
-            cssClass: 'text-bold'
-        },
-        {
-            condition: 'PositionName',
-            type: 'text',
-            cssClass: 'text-regular'
-        }
-    ]
-    listEmployeeActive: any = [];
-    listEmployeeResigned: any = [];
-    dataActive: any = [];
-    dataResigned: any = [];
-    constructor(
-        private service: EmployeeService,
-        private router: Router
-    ) { }
+      this.listEmployeeActive = res.map(x => {
+        return {
+          MediaURL: x.MediaURL,
+          PositionName: x.PositionName,
+          FullName: x.FullName,
+          ProviderId: x.ProviderId,
+          ProviderCode: x.ProviderCode,
+          fullText: x.FullName + '-' + x.ProviderId
+        };
+      });
+      this.dataActive = this.listEmployeeActive;
+    });
+    this.service.listEmployee(2).subscribe(res => {
+      this.listEmployeeResigned = res.map(x => {
+        return {
+          MediaURL: x.MediaURL,
+          PositionName: x.PositionName,
+          FullName: x.FullName,
+          ProviderId: x.ProviderId,
+          ProviderCode: x.ProviderCode,
+          fullText: x.FullName + '-' + x.ProviderId
+        };
+      });
+      this.dataResigned = this.listEmployeeResigned;
+    });
+  }
 
-    ngOnInit() {
-        this.service.listEmployee(1).subscribe(res => {
-            console.log(res, 123);
+  handleChangeValueSearch = (keyword) => {
+    this.listEmployeeActive = this.dataActive.filter((item: any) => {
+      return item.fullText.toLowerCase().includes(keyword.trim().toLocaleLowerCase());
+    })
+    this.listEmployeeResigned = this.dataResigned.filter((item: any) => {
+      return item.fullText.toLowerCase().includes(keyword.trim().toLocaleLowerCase());
+    })
+  }
 
-            this.listEmployeeActive = res.map(x => {
-                return {
-                    MediaURL: x.MediaURL,
-                    PositionName: x.PositionName,
-                    FullName: x.FullName,
-                    ProviderId: x.ProviderId,
-                    ProviderCode: x.ProviderCode,
-                    fullText: x.FullName + '-' + x.ProviderId
-                };
-            });
-            this.dataActive = this.listEmployeeActive;
-        });
-        this.service.listEmployee(2).subscribe(res => {
-            this.listEmployeeResigned = res.map(x => {
-                return {
-                    MediaURL: x.MediaURL,
-                    PositionName: x.PositionName,
-                    FullName: x.FullName,
-                    ProviderId: x.ProviderId,
-                    ProviderCode: x.ProviderCode,
-                    fullText: x.FullName + '-' + x.ProviderId
-                };
-            });
-            this.dataResigned = this.listEmployeeResigned;
-        });
-    }
+  routeToDetail(ev): void {
+    this.router.navigateByUrl(`employee/${ev.ProviderId}`);
+  }
 
-    handleChangeValueSearch = (keyword) => {
-        this.listEmployeeActive = this.dataActive.filter((item: any) => {
-            return item.fullText.toLowerCase().includes(keyword.trim().toLocaleLowerCase());
-        })
-        this.listEmployeeResigned = this.dataResigned.filter((item: any) => {
-            return item.fullText.toLowerCase().includes(keyword.trim().toLocaleLowerCase());
-        })
-    }
-
-    routeToDetail(ev): void {
-        this.router.navigateByUrl(`employee/${ev.ProviderId}`);
-    }
-
-    linkToAdd(ev) {
-        this.router.navigateByUrl('employee/add');
-    }
+  linkToAdd(ev) {
+    this.router.navigateByUrl('employee/add');
+  }
 
 }
 @NgModule({
-    declarations: [
-        ListEmployeeComponent
-    ],
-    imports: [
-        BaseModule,
-        CommonModule,
-        MatTabsModule,
-        MenuHeaderModule
-    ],
-    providers: []
+  declarations: [
+    ListEmployeeComponent
+  ],
+  imports: [
+    BaseModule,
+    CommonModule,
+    MatTabsModule,
+    MenuHeaderModule
+  ],
+  providers: []
 })
 
 export class ListEmpoyeeModule { }

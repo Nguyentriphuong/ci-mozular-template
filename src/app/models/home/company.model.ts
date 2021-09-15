@@ -10,58 +10,19 @@ export class CompanyModel {
                 type: 'link'
             },
             {
-                id: 'LegalName',
-                label: 'Full name',
-                name: 'LegalName',
+                id: 'Color',
+                label: 'Color (vd: #ffffff):',
+                name: 'Color',
                 type: 'text'
-            },
+            }
+            ,
             {
-                id: 'TradeName',
-                label: 'Short name',
-                name: 'TradeName',
-                type: 'text'
-            },
-            {
-                id: 'Email',
-                label: 'Email',
-                name: 'Email',
-                type: 'text'
-            },
-            {
-                id: 'Phone',
-                label: 'Phone',
-                name: 'Phone',
-                type: 'text'
-            },
-            {
-                id: 'Fax',
-                label: 'Fax',
-                name: 'Fax',
-                type: 'text'
-            },
-            {
-                id: 'TaxCode',
-                label: 'Tax code',
-                name: 'TaxCode',
-                type: 'text'
-            },
-            {
-                id: 'WebMediaURL',
-                label: 'Website link',
-                name: 'WebMediaURL',
-                type: 'text'
-            },
-            {
-                id: 'AddressLine1',
-                label: 'Address',
-                name: 'AddressLine',
-                type: 'text'
-            },
-            {
-                id: 'Owner',
-                label: 'Owner',
-                name: 'Owner',
-                type: 'text'
+                id: 'Nav',
+                label: 'Narbar:',
+                name: 'Nav',
+                type: 'selected',
+                data: [{ Name: 'not change', value: 1 },
+                { Name: 'change', value: 2 }]
             }
         ];
     }
