@@ -116,13 +116,14 @@ export class CompanyComponent implements OnInit {
             router: '/subscription'
           }
         ];
-        const data =  {
-          type: 'nar',
-          ListNav: listNav
-        };
-        console.log(JSON.stringify(listNav));
-        this.sendDataService.changeData(JSON.stringify(data));
+
       }
+      const data =  {
+        type: 'nar',
+        ListNav: listNav
+      };
+      console.log(JSON.stringify(listNav));
+      this.sendDataService.changeData(JSON.stringify(data));
       document.documentElement.style.setProperty(`--ci-color-ecko-blue`, value.data.Color);
       // this.service.update(value.data.CompanyId, value.data).subscribe(res => {
       //   // this.swal.success('Update success');
