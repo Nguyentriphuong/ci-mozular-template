@@ -31,7 +31,6 @@ export class DetailComponent implements OnChanges {
   }
 
   handleEvent(typeButton): void {
-    console.log(typeButton);
 
     if (typeButton === 'edit') {
       this.callback.emit({

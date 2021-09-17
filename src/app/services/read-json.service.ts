@@ -14,7 +14,6 @@ export class ReadJsonService {
     }
 
     public getJSON(url = './assets/json/theme1.json'): Observable<any> {
-        console.log(url);
         return this.http.get(url);
     }
 }

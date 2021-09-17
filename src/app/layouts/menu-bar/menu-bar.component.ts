@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Globals } from 'src/app/models/global/global';
 import { CompanyService } from 'src/app/services/company.service';
 import { SendDataService } from 'src/app/services/send-data.service';
 
@@ -11,29 +12,30 @@ import { SendDataService } from 'src/app/services/send-data.service';
   styleUrls: ['./menu-bar.component.scss']
 })
 export class MenuBarComponent implements OnInit {
+  globals: Globals = new Globals();
   listNav = [
     {
-      icon: 'assets/svg/Company.svg',
+      icon: `assets/${this.globals.urlFolder}svg/Company.svg`,
       name: 'Company',
       router: '/company'
     },
     {
-      icon: 'assets/svg/Subcription.svg',
+      icon: `assets/${this.globals.urlFolder}svg/Subcription.svg`,
       name: 'Subscription',
       router: '/subscription'
     },
     {
-      icon: 'assets/svg/Employee.svg',
+      icon: `assets/${this.globals.urlFolder}svg/Employee.svg`,
       name: 'Employee',
       router: '/employee'
     },
     {
-      icon: 'assets/svg/Lists.svg',
+      icon: `assets/${this.globals.urlFolder}svg/Lists.svg`,
       name: 'Lists',
       router: '/management'
     },
     {
-      icon: 'assets/svg/report.svg',
+      icon: `assets/${this.globals.urlFolder}svg/report.svg`,
       name: 'Report',
       router: '/report'
     }
@@ -42,13 +44,16 @@ export class MenuBarComponent implements OnInit {
   constructor(
     private service: CompanyService,
     private sendDataService: SendDataService,
-  ) { }
+    public global: Globals
+  ) { this.globals = global; }
 
   companyDetal: any;
   ngOnInit(): void {
     this.subscription = this.sendDataService.currentMessage.subscribe(data => {
       if (data && data !== 'default message') {
         const dataConvert = JSON.parse(data);
+        console.log(this.globals);
+
         if (dataConvert && dataConvert.type && dataConvert.type === 'nar') {
           this.listNav = dataConvert.ListNav;
         } else {
@@ -70,6 +75,7 @@ export class MenuBarComponent implements OnInit {
   declarations: [
     MenuBarComponent
   ],
+  providers: [ Globals ],
   imports: [
     CommonModule,
     RouterModule

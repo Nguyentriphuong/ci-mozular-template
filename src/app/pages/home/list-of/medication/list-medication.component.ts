@@ -99,7 +99,6 @@ export class ListMedicationComponent implements OnInit {
         });
     }
     callbackFromTable(data): void {
-      console.log(data);
       if (data.type === 'edit') {
         this.handleEventListBase(data.data);
       } else if (data.type === 'delete') {
@@ -135,7 +134,6 @@ export class ListMedicationComponent implements OnInit {
     }
 
     handleEventListBase = (value) => {
-        console.log(value);
         this.router.navigateByUrl(`management/medication/${value.DrugId}`);
     }
 

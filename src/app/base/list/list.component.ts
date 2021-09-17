@@ -17,7 +17,6 @@ export class ListComponent implements OnInit, OnChanges {
 
     ngOnChanges() {
         this.checkLayout = this.data.length;
-        console.log(this.create, this.config, this.data);
 
     }
 

@@ -12,8 +12,6 @@ export class ButtonComponent {
     @Input() isSmall = false;
 
     handleEventDetail = (type) => {
-        console.log(type);
-
         this.callback.emit(type);
     }
 

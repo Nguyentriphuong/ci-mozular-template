@@ -11,12 +11,9 @@ export class ThemeService {
   ) { }
   updateTheme(url): void {
     this.readJsonService.getJSON(url).subscribe(data => {
-      console.log(data);
       const keyNames = Object.keys(data);
       keyNames.forEach(key => {
         document.documentElement.style.setProperty(key, data[key]);
-        console.log(key);
-
       });
   });
   }

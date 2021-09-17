@@ -33,7 +33,6 @@ export class UserProfileComponent implements OnInit {
       };
       this.subscription = this.sendDataService.currentMessage.subscribe(res => {
         if (res && res !== 'default message') {
-          console.log(res);
           const companyDetal = JSON.parse(res);
           this.data.img = companyDetal.MediaURL;
           // this.getCompany();

@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
       if (data && data !== 'default message') {
         const dataConvert = JSON.parse(data);
         if (dataConvert && dataConvert.type && dataConvert.type === 'theme') {
-          console.log(dataConvert.value);
           this.appSettingsThemeService.updateTheme(`./assets/json/theme${dataConvert.value}.json`);
         }
         // this.getCompany();

@@ -190,7 +190,6 @@ export class TestComponent implements OnInit {
   }
   onActiveOrgans(lst, data, parent): void {
     const item = data.Item;
-    console.log(data);
     if (data.Type === 'add') {
       const dataReq = {
         TestcategoryId: parent.TestcategoryId,

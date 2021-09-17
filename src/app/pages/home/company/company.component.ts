@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Globals } from 'src/app/models/global/global';
 import { CompanyModel } from 'src/app/models/home/company.model';
 import { CompanyService } from 'src/app/services/company.service';
 import { SendDataService } from 'src/app/services/send-data.service';
@@ -11,7 +12,7 @@ import { SwalService } from 'src/app/services/swal.service';
   styleUrls: ['./company.component.scss']
 })
 export class CompanyComponent implements OnInit {
-
+  globals: Globals = new Globals();
   model: any = {
     Color: 1,
     Nav: 1
@@ -41,8 +42,9 @@ export class CompanyComponent implements OnInit {
   constructor(
     private service: CompanyService,
     private sendDataService: SendDataService,
-    private swal: SwalService
-  ) { }
+    private swal: SwalService,
+    public global: Globals
+  ) { this.globals = global; }
 
   ngOnInit(): void {
     // document.documentElement.style.setProperty(`--ci-color-ecko-blue`, '#2C2EB8');
@@ -52,7 +54,7 @@ export class CompanyComponent implements OnInit {
 
     // }, 5000);
     this.listCreate = this.config.create;
-    //this.getCompany(false);
+    // this.getCompany(false);
   }
   getCompany(check): void {
     this.service.detail().subscribe(res => {
@@ -65,64 +67,66 @@ export class CompanyComponent implements OnInit {
   }
   handleCallback = (value) => {
     if (value.type === 'save') {
-      console.log(value);
-      let listNav = [
-        {
-          icon: 'assets/svg/Company.svg',
-          name: 'Company',
-          router: '/company'
-        },
-        {
-          icon: 'assets/svg/Subcription.svg',
-          name: 'Subscription',
-          router: '/subscription'
-        },
-        {
-          icon: 'assets/svg/Employee.svg',
-          name: 'Employee',
-          router: '/employee'
-        },
-        {
-          icon: 'assets/svg/Lists.svg',
-          name: 'Lists',
-          router: '/management'
-        },
-        {
-          icon: 'assets/svg/report.svg',
-          name: 'Report',
-          router: '/report'
-        }
-      ];
-      if (value.data.Nav === 2) {
-        listNav = [
-          {
-            icon: 'assets/svg/Company.svg',
-            name: 'Company',
-            router: '/company'
-          },
-          {
-            icon: 'assets/svg/Employee.svg',
-            name: 'Employee',
-            router: '/employee'
-          },
-          {
-            icon: 'assets/svg/Lists.svg',
-            name: 'Lists',
-            router: '/management'
-          },
-          {
-            icon: 'assets/svg/Subcription.svg',
-            name: 'Subscription',
-            router: '/subscription'
-          }
-        ];
+      // let listNav = [
+      //   {
+      //     icon: 'assets/svg/Company.svg',
+      //     name: 'Company',
+      //     router: '/company'
+      //   },
+      //   {
+      //     icon: 'assets/svg/Subcription.svg',
+      //     name: 'Subscription',
+      //     router: '/subscription'
+      //   },
+      //   {
+      //     icon: 'assets/svg/Employee.svg',
+      //     name: 'Employee',
+      //     router: '/employee'
+      //   },
+      //   {
+      //     icon: 'assets/svg/Lists.svg',
+      //     name: 'Lists',
+      //     router: '/management'
+      //   },
+      //   {
+      //     icon: 'assets/svg/report.svg',
+      //     name: 'Report',
+      //     router: '/report'
+      //   }
+      // ];
+      // if (value.data.Nav === 2) {
+      //   listNav = [
+      //     {
+      //       icon: 'assets/svg/Company.svg',
+      //       name: 'Company',
+      //       router: '/company'
+      //     },
+      //     {
+      //       icon: 'assets/svg/Employee.svg',
+      //       name: 'Employee',
+      //       router: '/employee'
+      //     },
+      //     {
+      //       icon: 'assets/svg/Lists.svg',
+      //       name: 'Lists',
+      //       router: '/management'
+      //     },
+      //     {
+      //       icon: 'assets/svg/Subcription.svg',
+      //       name: 'Subscription',
+      //       router: '/subscription'
+      //     }
+      //   ];
 
-      }
-      const data =  {
-        type: 'nar',
-        ListNav: listNav
-      };
-      this.sendDataService.changeData(JSON.stringify(data));
+      // }
+      // const data =  {
+      //   type: 'nar',
+      //   ListNav: listNav
+      // };
+      // this.sendDataService.changeData(JSON.stringify(data));
+      this.globals.urlFolder = `theme/theme${value.data.Color}/`;
+      console.log(this.global, this.globals);
+
       const data2 =  {
         type: 'theme',
         value: value.data.Color

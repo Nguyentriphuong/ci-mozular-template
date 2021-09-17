@@ -11,6 +11,7 @@ import { LoaderService } from './services/loader.service';
 import { APIInterceptor } from './utils/interceptors/api.interceptor';
 import { AuthGuard } from './utils/interceptors/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
+import { Globals } from './models/global/global';
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -32,7 +33,8 @@ import { CookieService } from 'ngx-cookie-service';
         },
         CookieService,
         AuthGuard,
-        LoaderService
+        LoaderService,
+        Globals
     ],
     bootstrap: [AppComponent],
 })

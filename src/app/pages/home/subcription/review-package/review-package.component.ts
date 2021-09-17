@@ -42,7 +42,6 @@ export class ReviewPackageComponent implements OnInit, OnChanges {
     this.totalAmount = this.data.AvailableAccount * 19.59;
   }
   check(data): void {
-    console.log(data);
     this.totalAmount = data * 19.59;
 
   }

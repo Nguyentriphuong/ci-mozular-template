@@ -22,18 +22,15 @@ export class ModalComponent implements OnInit {
   config: any;
   dataModal: any;
   ngOnInit() {
-    console.log(this.data);
-    
+
     this.config = this.data.configModal;
     this.dataModal = this.data.dataModal;
     console.log(this.dataModal);
-    
+
   }
   onSwiper(swiper) {
-    console.log(swiper);
   }
   onSlideChange() {
-    console.log('slide change');
   }
   onSelectFile(event): void {
     if (event.target.files && event.target.files[0]) {

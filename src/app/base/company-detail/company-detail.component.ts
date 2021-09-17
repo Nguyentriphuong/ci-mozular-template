@@ -21,21 +21,18 @@ export class CompanyDetailComponent implements OnInit, OnChanges {
   height = 'calc(100% - 430px)';
   constructor() { }
   ngOnInit(): void {
-    console.log(this.button);
 
   }
 
   ngOnChanges(): void {
     this.data = this.data.filter(x => x.type !== 'link');
     this.model = this.dataModel || {};
-    console.log(this.model);
 
     this.tempModel = cloneDeep(this.model);
     this.profileImageString = this.dataModel ? this.dataModel.MediaURL : '';
   }
 
   handleEvent(typeButton): void {
-    console.log(typeButton);
     this.callback.emit({
       type: typeButton,
     });

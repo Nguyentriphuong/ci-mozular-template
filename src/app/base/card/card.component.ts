@@ -13,12 +13,10 @@ export class CardComponent implements OnInit {
   @Output() callback = new EventEmitter();
   name = '';
   ngOnInit(): void {
-    console.log(this.listExams);
 
     //throw new Error('Method not implemented.');
   }
   onCallBack(item, type?): void {
-    console.log(item, type);
     this.callback.emit({
       Type: type,
       Item: item
