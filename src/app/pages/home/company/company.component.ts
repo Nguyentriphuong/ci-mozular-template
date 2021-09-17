@@ -13,7 +13,7 @@ import { SwalService } from 'src/app/services/swal.service';
 export class CompanyComponent implements OnInit {
 
   model: any = {
-    Color: '#9fb9c8',
+    Color: 1,
     Nav: 1
   };
   config = new CompanyModel();
@@ -122,9 +122,12 @@ export class CompanyComponent implements OnInit {
         type: 'nar',
         ListNav: listNav
       };
-      console.log(JSON.stringify(listNav));
       this.sendDataService.changeData(JSON.stringify(data));
-      document.documentElement.style.setProperty(`--ci-color-ecko-blue`, value.data.Color);
+      const data2 =  {
+        type: 'theme',
+        value: value.data.Color
+      };
+      this.sendDataService.changeData(JSON.stringify(data2));
       // this.service.update(value.data.CompanyId, value.data).subscribe(res => {
       //   // this.swal.success('Update success');
       //   this.btnConfig.isEventUpdate = false;

@@ -11,9 +11,14 @@ export class CompanyModel {
             },
             {
                 id: 'Color',
-                label: 'Color (vd: #ffffff):',
+                label: 'Theme: ',
                 name: 'Color',
-                type: 'text'
+                type: 'selected',
+                data: [
+                { Name: 'theme 1', value: 1 },
+                { Name: 'theme 2', value: 2 },
+                { Name: 'theme 3', value: 3 },
+              ]
             }
             ,
             {

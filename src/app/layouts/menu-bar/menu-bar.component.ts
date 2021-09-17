@@ -48,7 +48,6 @@ export class MenuBarComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.sendDataService.currentMessage.subscribe(data => {
       if (data && data !== 'default message') {
-        console.log(data);
         const dataConvert = JSON.parse(data);
         if (dataConvert && dataConvert.type && dataConvert.type === 'nar') {
           this.listNav = dataConvert.ListNav;
