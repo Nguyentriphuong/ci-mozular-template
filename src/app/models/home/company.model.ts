@@ -18,6 +18,10 @@ export class CompanyModel {
                 { Name: 'theme 1', value: 1 },
                 { Name: 'theme 2', value: 2 },
                 { Name: 'theme 3', value: 3 },
+                { Name: 'theme 4', value: 4 },
+                { Name: 'theme 5', value: 5 },
+                { Name: 'theme 6', value: 6 },
+                { Name: 'theme 7', value: 7 },
               ]
             }
             ,
