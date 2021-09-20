@@ -10,7 +10,7 @@ export interface AppConfigInterface {
   readonly sentryDSN: string;
   readonly homeUrl: string;
   readonly homeUrlBefore: string;
-  readonly themeColors1: string;
-  readonly themeColors2: string;
+  readonly themeColors: string;
+  // readonly themeColors2: string;
   readonly apiImagesSource:string;
 }

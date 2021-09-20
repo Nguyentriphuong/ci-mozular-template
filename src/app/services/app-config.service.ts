@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {APP_INITIALIZER, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { AppConfigInterface } from '../models/global/AppConfigInterface';
 
@@ -17,8 +17,6 @@ export class AppConfigService {
     return new Promise<void>((resolve, reject) => {
       this.http.get(jsonFile).toPromise().then((response: AppConfigInterface) => {
         AppConfigService.settings = response as AppConfigInterface;
-        console.log(AppConfigService.settings);
-        
         resolve();
       }).catch((response: any) => {
         reject(`Could not load config file '${jsonFile}': ${JSON.stringify(response)}`);
@@ -26,3 +24,21 @@ export class AppConfigService {
     });
   }
 }
+export function ConfigFactory(config: AppConfigService) {
+  return () => config.loadSetting();
+}
+
+export function init() {
+  return {
+      provide: APP_INITIALIZER,
+      useFactory: ConfigFactory,
+      deps: [AppConfigService],
+      multi: true
+  }
+}
+
+const ConfigModule = {
+  init: init
+}
+
+export { ConfigModule };

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AppConfigService } from './services/app-config.service';
 import { ThemeService } from './services/theme.service';
 
 @Component({
@@ -11,11 +12,12 @@ export class AppComponent implements OnInit {
   title = 'EMR_ADMIN';
   subscription: Subscription;
   constructor(
-    private appSettingsThemeService: ThemeService
+    private appSettingsThemeService: ThemeService,
+    private appConfig: AppConfigService 
   ) {
   }
   ngOnInit(): void {
-    this.appSettingsThemeService.updateTheme('../assets/theme/theme1/theme.json');
-    // document.documentElement.style.setProperty(`--ci-color-ecko-blue`, '#9fb9c8');
+    console.log(AppConfigService.settings);
+    this.appSettingsThemeService.updateTheme(AppConfigService.settings.themeColors);
   }
 }

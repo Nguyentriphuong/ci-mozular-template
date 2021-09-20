@@ -7,6 +7,6 @@
       "ja"
     ],
     "sentryDSN": "https://ee1eb118b8fa4c88bf530ca0ad444b4c@sentry.io/1515595",
-    "themeColors1":"#08088A",
+    "themeColors":"../assets/theme/theme1/theme.json",
     "themeColors2":"#FF00FF"
   }
