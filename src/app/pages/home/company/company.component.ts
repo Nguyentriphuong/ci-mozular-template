@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Globals } from 'src/app/models/global/global';
 import { CompanyModel } from 'src/app/models/home/company.model';
+import { BaseThemeService } from 'src/app/services/base-theme.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { SendDataService } from 'src/app/services/send-data.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -42,9 +43,9 @@ export class CompanyComponent implements OnInit {
   constructor(
     private service: CompanyService,
     private sendDataService: SendDataService,
-    private swal: SwalService,
-    public global: Globals
-  ) { this.globals = global; }
+    private baseThemeService: BaseThemeService,
+    private swal: SwalService
+  ) { }
 
   ngOnInit(): void {
     // document.documentElement.style.setProperty(`--ci-color-ecko-blue`, '#2C2EB8');
@@ -124,19 +125,11 @@ export class CompanyComponent implements OnInit {
       //   ListNav: listNav
       // };
       // this.sendDataService.changeData(JSON.stringify(data));
-      this.globals.urlFolder = `theme/theme${value.data.Color}/`;
-      console.log(this.global, this.globals);
-
-      const data2 =  {
+      const data =  {
         type: 'theme',
         value: value.data.Color
       };
-      this.sendDataService.changeData(JSON.stringify(data2));
-      // this.service.update(value.data.CompanyId, value.data).subscribe(res => {
-      //   // this.swal.success('Update success');
-      //   this.btnConfig.isEventUpdate = false;
-      //   this.getCompany(true);
-      // });
+      this.baseThemeService.changeData(JSON.stringify(data));
     }
     this.btnConfig.isEventUpdate = false;
 

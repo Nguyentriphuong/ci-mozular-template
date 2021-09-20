@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ReadJsonService } from './services/read-json.service';
-import { SendDataService } from './services/send-data.service';
 import { ThemeService } from './services/theme.service';
 
 @Component({
@@ -13,18 +11,8 @@ export class AppComponent implements OnInit {
   title = 'EMR_ADMIN';
   subscription: Subscription;
   constructor(
-    private appSettingsThemeService: ThemeService,
-    private sendDataService: SendDataService
+    private appSettingsThemeService: ThemeService
   ) {
-    this.subscription = this.sendDataService.currentMessage.subscribe(data => {
-      if (data && data !== 'default message') {
-        const dataConvert = JSON.parse(data);
-        if (dataConvert && dataConvert.type && dataConvert.type === 'theme') {
-          this.appSettingsThemeService.updateTheme(`./assets/json/theme${dataConvert.value}.json`);
-        }
-        // this.getCompany();
-      }
-    });
   }
   ngOnInit(): void {
     this.appSettingsThemeService.updateTheme('./assets/json/theme1.json');
