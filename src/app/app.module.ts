@@ -12,6 +12,11 @@ import { APIInterceptor } from './utils/interceptors/api.interceptor';
 import { AuthGuard } from './utils/interceptors/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './models/global/global';
+import { AppConfigService } from './services/app-config.service';
+
+export function initializeApp(appConfig: AppConfigService) {
+    return () => appConfig.loadSetting();
+}
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -29,7 +34,8 @@ import { Globals } from './models/global/global';
         },
         {
             provide: LocationStrategy,
-            useClass: HashLocationStrategy
+            useClass: HashLocationStrategy,
+            // useFactory: initializeApp
         },
         CookieService,
         AuthGuard,

@@ -19,7 +19,7 @@ export class BaseThemeService {
         
         if (dataConvert && dataConvert.type && dataConvert.type === 'theme') {
           this.globals.urlFolder = `theme/theme${dataConvert.value}/`;
-          this.appSettingsThemeService.updateTheme(`./assets/json/theme${dataConvert.value}.json`);
+          this.appSettingsThemeService.updateTheme(`./assets/theme/theme${dataConvert.value}/theme.json`);
         }
       }
     });

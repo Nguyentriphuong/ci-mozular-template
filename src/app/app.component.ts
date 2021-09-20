@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ) {
   }
   ngOnInit(): void {
-    this.appSettingsThemeService.updateTheme('./assets/json/theme1.json');
+    this.appSettingsThemeService.updateTheme('../assets/theme/theme1/theme.json');
     // document.documentElement.style.setProperty(`--ci-color-ecko-blue`, '#9fb9c8');
   }
 }

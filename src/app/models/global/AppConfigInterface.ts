@@ -1,0 +1,16 @@
+enum Languages {en, ja}
+
+export interface AppConfigInterface {
+  readonly production: boolean;
+  readonly apiUrl: string;
+  readonly imgUrl: string;
+  readonly socketUrl: string;
+  readonly defaultLanguage: string;
+  readonly supportedLanguages: Languages;
+  readonly sentryDSN: string;
+  readonly homeUrl: string;
+  readonly homeUrlBefore: string;
+  readonly themeColors1: string;
+  readonly themeColors2: string;
+  readonly apiImagesSource:string;
+}
