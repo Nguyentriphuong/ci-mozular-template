@@ -19,7 +19,6 @@ export class BaseThemeService {
         
         if (dataConvert && dataConvert.type && dataConvert.type === 'theme') {
           this.globals.urlFolder = `theme/theme${dataConvert.value}/`;
-          debugger
           this.appSettingsThemeService.updateTheme(`./assets/json/theme${dataConvert.value}.json`);
         }
       }
