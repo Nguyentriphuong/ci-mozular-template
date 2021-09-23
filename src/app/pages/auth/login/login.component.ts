@@ -7,6 +7,8 @@ import { AuthService } from '../service/auth.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { BaseModule } from 'src/app/base/base.module';
 import { CookieService } from 'ngx-cookie-service';
+import { Globals } from 'src/app/models/global/global';
+import { BaseThemeService } from 'src/app/services/base-theme.service';
 
 @Component({
     selector: 'app-login',
@@ -14,13 +16,16 @@ import { CookieService } from 'ngx-cookie-service';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
+    globals: Globals = new Globals();
     constructor(
         private router: Router,
         private service: AuthService,
         private loadingSerive: LoaderService,
-        private cookieService: CookieService
-    ) { }
+        private cookieService: CookieService,
+        private basethemeService: BaseThemeService
+    ) { 
+      this.globals = this.basethemeService.getGlobalValue();
+    }
 
     error: any;
     model: any = {};

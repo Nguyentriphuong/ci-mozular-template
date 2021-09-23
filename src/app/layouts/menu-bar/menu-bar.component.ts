@@ -59,27 +59,27 @@ export class MenuBarComponent implements OnInit {
   updateNar() {
     this.listNav = [
       {
-        icon: `assets/${this.globals.urlFolder}svg/Company.svg`,
+        icon: `${this.globals.urlFolder}svg/Company.svg`,
         name: 'Company',
         router: '/company'
       },
       {
-        icon: `assets/${this.globals.urlFolder}svg/Subcription.svg`,
+        icon: `${this.globals.urlFolder}svg/Subcription.svg`,
         name: 'Subscription',
         router: '/subscription'
       },
       {
-        icon: `assets/${this.globals.urlFolder}svg/Employee.svg`,
+        icon: `${this.globals.urlFolder}svg/Employee.svg`,
         name: 'Employee',
         router: '/employee'
       },
       {
-        icon: `assets/${this.globals.urlFolder}svg/Lists.svg`,
+        icon: `${this.globals.urlFolder}svg/Lists.svg`,
         name: 'Lists',
         router: '/management'
       },
       {
-        icon: `assets/${this.globals.urlFolder}svg/report.svg`,
+        icon: `${this.globals.urlFolder}svg/report.svg`,
         name: 'Report',
         router: '/report'
       }

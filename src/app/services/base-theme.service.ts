@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Globals } from '../models/global/global';
+import { AppConfigService } from './app-config.service';
 import { ThemeService } from './theme.service';
 
 @Injectable({
@@ -18,7 +19,7 @@ export class BaseThemeService {
         console.log(dataConvert);
         
         if (dataConvert && dataConvert.type && dataConvert.type === 'theme') {
-          this.globals.urlFolder = `theme/theme${dataConvert.value}/`;
+          this.globals.urlFolder = `assets/theme/theme${dataConvert.value}/`;
           this.appSettingsThemeService.updateTheme(`./assets/theme/theme${dataConvert.value}/theme.json`);
         }
       }
@@ -27,6 +28,11 @@ export class BaseThemeService {
 
   changeData(data: any): void {
     this.dataSource.next(data);
+  }
+  setInitValue() {
+    console.log(AppConfigService.settings);
+    this.globals.urlFolder = AppConfigService.settings.apiImagesSource;
+    this.appSettingsThemeService.updateTheme(AppConfigService.settings.themeColors);
   }
   getGlobalValue() {
     return this.globals;

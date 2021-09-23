@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AppConfigService } from './services/app-config.service';
-import { ThemeService } from './services/theme.service';
+import { BaseThemeService } from './services/base-theme.service';
 
 @Component({
     selector: 'app-root',
@@ -12,12 +12,11 @@ export class AppComponent implements OnInit {
   title = 'EMR_ADMIN';
   subscription: Subscription;
   constructor(
-    private appSettingsThemeService: ThemeService,
-    private appConfig: AppConfigService 
+    private appSettingsThemeService: BaseThemeService,
   ) {
   }
   ngOnInit(): void {
     console.log(AppConfigService.settings);
-    this.appSettingsThemeService.updateTheme(AppConfigService.settings.themeColors);
+    this.appSettingsThemeService.setInitValue();
   }
 }
