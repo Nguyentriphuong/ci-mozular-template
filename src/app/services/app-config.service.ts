@@ -1,6 +1,6 @@
 import {APP_INITIALIZER, Inject, Injectable, InjectionToken} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { AppConfigInterface } from '../models/global/AppConfigInterface';
+import { AppConfigInterface, AppDomainInterface } from '../models/global/AppConfigInterface';
 import { WINDOW } from '../utils/providers/window.providers';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { WINDOW } from '../utils/providers/window.providers';
 
 export class AppConfigService {
   static settings: AppConfigInterface;
+  static domain: AppDomainInterface;
 
   constructor(private http: HttpClient, 
     @Inject(WINDOW) private window: Window
@@ -21,7 +22,12 @@ export class AppConfigService {
     return new Promise<void>((resolve, reject) => {
       this.http.get(jsonFile).toPromise().then((response: AppConfigInterface) => {
         AppConfigService.settings = response as AppConfigInterface;
-        console.log(this.window.location.hostname,'sss');
+        let res: AppDomainInterface = {
+          domain : this.window.location.hostname
+        }
+        AppConfigService.domain = {
+          domain : this.window.location.hostname
+        }
         resolve();
       }).catch((response: any) => {
         reject(`Could not load config file '${jsonFile}': ${JSON.stringify(response)}`);

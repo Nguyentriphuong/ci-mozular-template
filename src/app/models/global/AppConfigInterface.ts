@@ -2,7 +2,6 @@ enum Languages {en, ja}
 
 export interface AppConfigInterface {
   readonly production: boolean;
-  readonly domain: boolean;
   readonly apiUrl: string;
   readonly imgUrl: string;
   readonly socketUrl: string;
@@ -14,4 +13,7 @@ export interface AppConfigInterface {
   readonly themeColors: string;
   // readonly themeColors2: string;
   readonly apiImagesSource:string;
+}
+export interface AppDomainInterface {
+  readonly domain: string;
 }

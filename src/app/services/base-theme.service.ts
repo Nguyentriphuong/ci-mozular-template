@@ -30,9 +30,11 @@ export class BaseThemeService {
     this.dataSource.next(data);
   }
   setInitValue() {
-    console.log(AppConfigService.settings);
-    this.globals.urlFolder = AppConfigService.settings.apiImagesSource;
-    this.appSettingsThemeService.updateTheme(AppConfigService.settings.themeColors);
+    console.log(AppConfigService.domain);
+    this.globals.urlFolder = `assets/theme/${AppConfigService.domain.domain}/`;
+    this.appSettingsThemeService.updateTheme(`assets/theme/${AppConfigService.domain.domain}/theme.json`);
+    // this.globals.urlFolder = AppConfigService.settings.apiImagesSource;
+    // this.appSettingsThemeService.updateTheme(AppConfigService.settings.themeColors);
   }
   getGlobalValue() {
     return this.globals;
