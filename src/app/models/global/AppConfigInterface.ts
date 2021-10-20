@@ -2,6 +2,7 @@ enum Languages {en, ja}
 
 export interface AppConfigInterface {
   readonly production: boolean;
+  readonly domain: boolean;
   readonly apiUrl: string;
   readonly imgUrl: string;
   readonly socketUrl: string;

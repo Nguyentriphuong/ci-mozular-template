@@ -13,6 +13,7 @@ import { AuthGuard } from './utils/interceptors/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './models/global/global';
 import { AppConfigService, ConfigModule } from './services/app-config.service';
+import { WINDOW_PROVIDERS } from './utils/providers/window.providers';
 
 @NgModule({
     declarations: [AppComponent],
@@ -35,6 +36,7 @@ import { AppConfigService, ConfigModule } from './services/app-config.service';
             // useFactory: () => appConfig.loadSetting()
         },
         AppConfigService,
+        WINDOW_PROVIDERS, 
         ConfigModule.init(),
         CookieService,
         AuthGuard,
