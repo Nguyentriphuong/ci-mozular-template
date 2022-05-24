@@ -14,6 +14,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './models/global/global';
 import { AppConfigService, ConfigModule } from './services/app-config.service';
 import { WINDOW_PROVIDERS } from './utils/providers/window.providers';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,6 +25,12 @@ import { WINDOW_PROVIDERS } from './utils/providers/window.providers';
         BrowserAnimationsModule,
         HttpClientModule,
         LoaderModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: environment.production,
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        }),
     ],
     providers: [
         {
